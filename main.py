@@ -11,8 +11,14 @@ print("Mode:", img.mode)
 
 ar = np.array(img)
 print(ar)
-print(ar[0, 199])
+
+for i in range(ar.shape[0]):
+    for j in range(ar.shape[1]):
+        if(ar[i, j] == 255):
+            ar[i, j] = 0;
+        else:
+            ar[i, j] = 255;
 
 finalImage = Image.fromarray(np.uint8(ar))
 finalImage.save('imagens/result.png')
-#finalImage.show()
+finalImage.show()
