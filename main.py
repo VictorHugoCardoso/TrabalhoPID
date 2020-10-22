@@ -2,6 +2,7 @@ import PIL
 from PIL import Image
 from PIL import ImageFilter
 import numpy as np
+import atlastk
 
 def dilateCross(ar,x):
     for n in range(x): 
@@ -28,7 +29,7 @@ def dilateCross(ar,x):
 
     print('Dilated:\n',ar)
     finalImage = Image.fromarray(np.uint8(ar))
-    finalImage.save('imagens/dilatedCross.png')
+    finalImage.save('imagens/geradas/dilatedCross.png')
     #finalImage.show()
 
 def dilateSquare(ar,x):
@@ -68,7 +69,7 @@ def dilateSquare(ar,x):
 
     print('Dilated:\n',ar)
     finalImage = Image.fromarray(np.uint8(ar))
-    finalImage.save('imagens/dilatedSquare.png')
+    finalImage.save('imagens/geradas/dilatedSquare.png')
     #finalImage.show()
 
 
@@ -97,7 +98,7 @@ def erodeCross(ar,x):
         print(n,'...')
     print('Eroded:\n',ar)
     finalImage = Image.fromarray(np.uint8(ar))
-    finalImage.save('imagens/eroded.png')
+    finalImage.save('imagens/geradas/eroded.png')
     #finalImage.show()
 
 def erodeSquare(ar,x):
@@ -138,15 +139,53 @@ def erodeSquare(ar,x):
         print(n,'...')
     print('Eroded:\n',ar)
     finalImage = Image.fromarray(np.uint8(ar))
-    finalImage.save('imagens/erodedSquare.png')
+    finalImage.save('imagens/geradas/erodedSquare.png')
     #finalImage.show()
 
 
 #---------------------------------------------------------------
 
+def ac_connect(dom):
+  dom.inner("", open("Main.html").read())
+  dom.focus("input")
 
-name = "example1.png"
-img = Image.open("imagens/"+name).convert('L').point(lambda x: 0 if x<128 else 255, 'L')
+def ac_submit(dom):
+  print("Caminho:", dom.get_value("input"))
+  dom.focus("input")
+
+  caminho_img = dom.get_value("input")
+  img = Image.open(caminho_img).convert('L').point(lambda x: 0 if x < 128 else 255, 'L')
+
+  print("Formato:", img.format)
+  print("Size:", img.size)
+  print("Mode:", img.mode)
+
+  array1 = np.array(img)
+  array2 = np.array(img)
+
+  dilateCross(array1, 2)  # n
+  dilateSquare(array1, 2)  # n
+  erodeCross(array2, 2)
+  erodeSquare(array2, 2)
+
+  dom.alert("Imagens geradas e salvas na pasta \"imagens\geradas\" uma pasta dentro da pasta dos trabalho")
+
+def ac_clear(dom):
+  if ( dom.confirm("Tem certeza?") ):
+    dom.set_value("input", "")
+  dom.focus("input")
+
+callbacks = {
+  "": ac_connect,  # The action label for a new connection is an empty string.
+  "Submit": ac_submit,
+  "Clear": ac_clear,
+}
+
+atlastk.launch(callbacks, None, open("Head.html").read())
+
+
+#name = "example1.png"
+
 
 #cheat
 '''
@@ -156,14 +195,3 @@ eroded_img = img.filter(ImageFilter.MinFilter(3))
 eroded_img.save('imagens/erodedFunction.png')
 '''
 
-print("Formato:", img.format)
-print("Size:", img.size)
-print("Mode:", img.mode)
-
-array1 = np.array(img)
-array2 = np.array(img)
-
-dilateCross(array1, 2) #n
-dilateSquare(array1, 2) #n
-erodeCross(array2, 2)
-erodeSquare(array2, 2)
