@@ -1,16 +1,23 @@
 import PIL
 from PIL import Image
+from PIL import ImageFilter
 import numpy as np
 
-name = "example2.png"
+name = "teste1.gif"
 img = Image.open("imagens/"+name).convert('L').point(lambda x: 0 if x<128 else 255, 'L')
+
+#cheat
+dilation_img = img.filter(ImageFilter.MaxFilter(3))
+dilation_img.save('imagens/dilationFunction.png')
+eroded_img = img.filter(ImageFilter.MinFilter(3))
+eroded_img.save('imagens/erodedFunction.png')
 
 print("Formato:", img.format)
 print("Size:", img.size)
 print("Mode:", img.mode)
 
-ar = np.array(img)
-print('Antes:\n',ar)
+array = np.array(img)
+print('Antes:\n',array)
 
 def dilate(ar):
     for i in range(ar.shape[0]):
@@ -32,10 +39,20 @@ def dilate(ar):
         for j in range(ar.shape[1]):
             if (ar[i, j] == 2):
                 ar[i, j] = 255
+    
+    print('Dilated:\n',ar)
+    finalImage = Image.fromarray(np.uint8(ar))
+    finalImage.save('imagens/dilated.png')
+    finalImage.show()
 
-dilate(ar)
-print('Depois:\n',ar)
+def erode(ar):
 
-finalImage = Image.fromarray(np.uint8(ar))
-finalImage.save('imagens/result.png')
-finalImage.show()
+
+
+    print('Eroded:\n',ar)
+    finalImage = Image.fromarray(np.uint8(ar))
+    finalImage.save('imagens/eroded.png')
+    finalImage.show()
+
+dilate(array)
+#erode(array)
