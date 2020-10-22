@@ -151,6 +151,10 @@ def ac_connect(dom):
 
 def ac_submit(dom):
   print("Caminho:", dom.get_value("input"))
+  print("Dilate cross:", dom.get_value("dilateCross"))
+  print("Dilate square:", dom.get_value("dilateSquare"))
+  print("Erode cross:", dom.get_value("erodeCross"))
+  print("Erode square:", dom.get_value("erodeSquare"))
   dom.focus("input")
 
   caminho_img = dom.get_value("input")
@@ -163,10 +167,17 @@ def ac_submit(dom):
   array1 = np.array(img)
   array2 = np.array(img)
 
-  dilateCross(array1, 2)  # n
-  dilateSquare(array1, 2)  # n
-  erodeCross(array2, 2)
-  erodeSquare(array2, 2)
+  if dom.get_value("dilateCross") == "true":
+      dilateCross(array1, 2)  # n
+
+  if dom.get_value("dilateSquare") == "true":
+      dilateSquare(array1, 2)  # n
+
+  if dom.get_value("erodeCross") == "true":
+      erodeCross(array2, 2)
+
+  if dom.get_value("erodeSquare") == "true":
+      erodeSquare(array2, 2)
 
   dom.alert("Imagens geradas e salvas na pasta \"imagens\geradas\" uma pasta dentro da pasta dos trabalho")
 
