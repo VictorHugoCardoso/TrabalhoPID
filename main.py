@@ -167,17 +167,17 @@ def ac_submit(dom):
   array1 = np.array(img)
   array2 = np.array(img)
 
-  if dom.get_value("dilateCross") == "true":
-      dilateCross(array1, 2)  # n
+  if dom.get_value("dilateCross") == "true" and int(dom.get_value("quantityDC")) > 0:
+      dilateCross(array1, int(dom.get_value("quantityDC")))  # n
 
-  if dom.get_value("dilateSquare") == "true":
-      dilateSquare(array1, 2)  # n
+  if dom.get_value("dilateSquare") == "true" and int(dom.get_value("quantityDS")) > 0:
+      dilateSquare(array1, int(dom.get_value("quantityDS")))  # n
 
-  if dom.get_value("erodeCross") == "true":
-      erodeCross(array2, 2)
+  if dom.get_value("erodeCross") == "true" and int(dom.get_value("quantityEC")) > 0:
+      erodeCross(array2, int(dom.get_value("quantityEC")))
 
-  if dom.get_value("erodeSquare") == "true":
-      erodeSquare(array2, 2)
+  if dom.get_value("erodeSquare") == "true" and int(dom.get_value("quantityES")) > 0:
+      erodeSquare(array2, int(dom.get_value("quantityES")))
 
   dom.alert("Imagens geradas e salvas na pasta \"imagens\geradas\" uma pasta dentro da pasta dos trabalho")
 

@@ -1,4 +1,4 @@
-
+    <h1>TEMA 17</h1>
 
     <fieldset>
         <h3>Opcoes de Imagen: </h3>
@@ -6,20 +6,38 @@
         <input id="input" maxlength="300"  type="text" data-xdh-onevent="Submit" />
         <br>
         <h3>Opcoes de Algoritmos: </h3>
-        <label for="dilateCross">Dilate Cross</label>
-        <input type="checkbox" id="dilateCross" name="dilateCross" value="dilateCross" checked>
-        <br>
-        <label for="dilateSquare">Dilate Square</label>
-        <input type="checkbox" id="dilateSquare" name="dilateSquare" value="dilateSquare" checked>
-        <br>
-        <label for="erodeCross">Erode Cross</label>
-        <input type="checkbox" id="erodeCross" name="erodeCross" value="erodeCross" checked>
-        <br>
-        <label for="erodeSquare">Erode Square</label>
-        <input type="checkbox" id="erodeSquare" name="erodeSquare" value="erodeSquare" checked>
 
 
-     <div style="display: flex; justify-content: space-around; margin: 5px auto auto auto;">
+        <div class="esquerda">
+            <label for="dilateCross">Dilate Cross:&nbsp;&nbsp;</label>
+            <input type="checkbox" id="dilateCross" name="dilateCross" value="dilateCross" checked>
+            <br>
+            <label for="dilateSquare">Dilate Square:</label>
+            <input type="checkbox" id="dilateSquare" name="dilateSquare" value="dilateSquare" checked>
+            <br>
+            <label for="erodeCross">Erode Cross:&nbsp;&nbsp;</label>
+            <input type="checkbox" id="erodeCross" name="erodeCross" value="erodeCross" checked>
+            <br>
+            <label for="erodeSquare">Erode Square:</label>
+            <input type="checkbox" id="erodeSquare" name="erodeSquare" value="erodeSquare" checked>
+        </div>
+
+        <div class="direita">
+            <label for="quantityDC">Repeticoes:</label>
+            <input type="number" id="quantityDC" name="quantityDC" min="1" max="5" value="1">
+            <br>
+            <label for="quantityDS">Repeticoes:</label>
+            <input type="number" id="quantityDS" name="quantityDS" min="1" max="5" value="1">
+            <br>
+            <label for="quantityEC">Repeticoes:</label>
+            <input type="number" id="quantityEC" name="quantityEC" min="1" max="5" value="1">
+            <br>
+            <label for="quantityES">Repeticoes:</label>
+            <input type="number" id="quantityES" name="quantityES" min="1" max="5" value="1">
+        </div>
+
+
+     <div class="bottom" style="display: flex; justify-content: space-around; margin: 5px auto auto auto;">
       <button data-xdh-onevent="Submit">Enviar</button>
       <button data-xdh-onevent="Clear">Limpar</button>
      </div>
