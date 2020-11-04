@@ -150,6 +150,10 @@ def ac_connect(dom):
   dom.focus("input")
 
 def ac_submit(dom):
+
+  dom.disable_element("enviar")
+  dom.disable_element("limpar")
+
   print("Caminho:", dom.get_value("input"))
   print("Dilate cross:", dom.get_value("dilateCross"))
   print("Dilate square:", dom.get_value("dilateSquare"))
@@ -182,6 +186,8 @@ def ac_submit(dom):
       erodeSquare(array4, int(dom.get_value("quantityES")))
 
   dom.alert("Imagens geradas e salvas na pasta \"imagens\geradas\" uma pasta dentro da pasta dos trabalho")
+  dom.enable_element("enviar")
+  dom.enable_element("limpar")
 
 def ac_clear(dom):
   if ( dom.confirm("Tem certeza?") ):
